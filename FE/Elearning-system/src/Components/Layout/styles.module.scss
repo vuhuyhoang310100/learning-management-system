@@ -1,0 +1,9 @@
+@import '@styles/mixin.module.scss';
+
+.wrapper {
+    @include flex_box_custom(center, center, 0);
+}
+
+.container {
+    width: 1250px;
+}

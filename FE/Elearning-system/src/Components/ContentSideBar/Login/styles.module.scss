@@ -1,7 +1,18 @@
 @import '@styles/mixin.module.scss';
 
 .container {
-    padding: 35px 24px;
+    padding: 0px 24px;
+}
+
+.boxLogo {
+    margin: 10px auto;
+    width: 300px;
+    height: 110px;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .containerTitle {
@@ -23,5 +34,18 @@
         color: #4a5578;
         font-weight: 400;
         line-height: 24px;
+    }
+}
+
+.submitBtn {
+    margin: 30px auto;
+    width: 300px;
+}
+
+.textDes {
+    text-align: end;
+
+    span {
+        margin-left: 4px;
     }
 }

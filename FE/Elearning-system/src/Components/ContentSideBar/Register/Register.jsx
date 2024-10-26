@@ -1,12 +1,22 @@
 import InputCommon from '@components/InputCommon/InputCommon';
+import images from '@assets/images/images';
 import styles from './styles.module.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { ToastContext } from '@/Context/ToastProvider';
 import { useContext } from 'react';
+import Button from '@components/Button/Button';
 
 function Register() {
-    const { container, containerTitle, title, subTitle } = styles;
+    const {
+        container,
+        boxLogo,
+        containerTitle,
+        title,
+        subTitle,
+        submitBtn,
+        textDes
+    } = styles;
     const { toast } = useContext(ToastContext);
 
     const formik = useFormik({
@@ -35,6 +45,9 @@ function Register() {
 
     return (
         <div className={container}>
+            <div className={boxLogo}>
+                <img src={images.logo} alt='' />
+            </div>
             <div className={containerTitle}>
                 <span className={title}>Tạo tài khoản</span>
                 <p className={subTitle}>
@@ -60,13 +73,19 @@ function Register() {
                     type='password'
                     formik={formik}
                 />
-                <button
+                <Button
                     type='submit'
                     onClick={() => toast.success('Đăng ký thành công')}
+                    primary
+                    long
+                    className={submitBtn}
                 >
                     Tạo tài khoản
-                </button>
+                </Button>
             </form>
+            <div className={textDes}>
+                Đã có tài khoản?<Button text>Đăng nhập</Button>
+            </div>
         </div>
     );
 }
