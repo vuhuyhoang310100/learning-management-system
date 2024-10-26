@@ -1,6 +1,7 @@
 import images from '@assets/images/images';
 import { useContext } from 'react';
 import { SideBarContext } from '@/Context/SideBarProvider';
+import Button from '@components/Button/Button';
 
 function Header() {
     const { setIsOpen, setType } = useContext(SideBarContext);
@@ -22,6 +23,7 @@ function Header() {
                 <button onClick={() => handleOpenSideBar('signup')}>
                     Đăng ký
                 </button>
+                <Button outline>Login</Button>
             </div>
         </div>
     );
