@@ -1,0 +1,27 @@
+@import '@styles/mixin.module.scss';
+
+.container {
+    padding: 35px 24px;
+}
+
+.containerTitle {
+    @include flex_box_custom(flex-start, flex-start, 0px);
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    .title {
+        font-size: 36px;
+        color: #30374f;
+        font-weight: 500;
+        line-height: 44px;
+        letter-spacing: -0.72px;
+    }
+
+    .subTitle {
+        margin: 5px 0;
+        font-size: 16px;
+        color: #4a5578;
+        font-weight: 400;
+        line-height: 24px;
+    }
+}
