@@ -1,16 +1,24 @@
 @import '@styles/mixin.module.scss';
+@import '@styles/variable.module.scss';
 
 .container {
-    @include flex_box_custom(space-between, center, 20px);
-
-    width: 100%;
-    min-height: 100px;
-    // background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    height: $header-height;
+    padding: 0px 28px;
+    z-index: 20;
+    background-color: $white-color;
+    border-bottom: 1px solid #e8ebed;
 }
 
 .headerLogo {
-    width: 300px;
-    height: 110px;
+    display: flex;
+    width: 225px;
+    height: 80px;
 
     img {
         width: 100%;
@@ -18,6 +26,13 @@
     }
 }
 
+.searchBox {
+    @include flex_box_custom(center, center, 0);
+    flex: 1;
+}
+
 .boxButton {
-    @include flex_box_custom(center, center, 20px);
+    @include flex_box_custom(flex-end, center, 20px);
+    flex-shrink: 0;
+    margin-left: auto;
 }

@@ -1,9 +1,10 @@
-@import '@styles/mixin.module.scss';
+@import '@styles/variable.module.scss';
 
 .wrapper {
-    @include flex_box_custom(center, center, 0);
+    margin-top: $header-height;
 }
 
 .container {
-    width: 1250px;
+    display: flex;
+    min-height: 100vh;
 }

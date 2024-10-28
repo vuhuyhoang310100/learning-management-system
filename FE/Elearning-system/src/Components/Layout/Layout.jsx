@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-function CenterLayout({ children }) {
+function BodyLayout({ children }) {
     const { wrapper, container } = styles;
     return (
         <div className={wrapper}>
@@ -9,4 +9,4 @@ function CenterLayout({ children }) {
     );
 }
 
-export default CenterLayout;
+export default BodyLayout;

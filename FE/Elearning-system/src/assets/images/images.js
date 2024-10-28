@@ -1,4 +1,4 @@
-import logo from '@assets/images/LogoE.png';
+import logo from '@assets/images/LogoSE.png';
 const images = {
     logo: logo
 };
