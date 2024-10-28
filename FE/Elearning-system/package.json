@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tippyjs/react": "^4.2.6",
+    "axios": "^1.7.7",
     "classnames": "^2.5.1",
     "formik": "^2.4.6",
     "normalize.css": "^8.0.1",

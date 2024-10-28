@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { SideBarContext } from '@/Context/SideBarProvider';
 import Button from '@components/Button/Button';
 import CenterLayout from '@components/Layout/Layout';
+import Search from '@components/Search/Search';
 
 function Header() {
     const { container, headerLogo, boxButton, boxSearch } = styles;
@@ -21,10 +22,7 @@ function Header() {
                     <div className={headerLogo}>
                         <img src={images.logo} alt='' />
                     </div>
-                    <div className={boxSearch}>
-                        <input />
-                    </div>
-                    <div>Brand</div>
+                    <Search />
                     <div className={boxButton}>
                         <Button
                             outline
