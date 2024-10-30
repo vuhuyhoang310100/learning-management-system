@@ -6,6 +6,7 @@ import BodyLayout from '@components/Layout/Layout';
 import NavBar from '@components/NavBar/NavBar';
 import Footer from '@components/Footer/Footer';
 import Content from '@components/Content/Content';
+import BlankPage from '@components/BlankPage/BlankPage';
 
 function App() {
     return (
@@ -16,7 +17,9 @@ function App() {
                     <SideBar />
                     <BodyLayout>
                         <NavBar />
-                        <Content />
+                        <Content>
+                            <BlankPage />
+                        </Content>
                     </BodyLayout>
                     <Footer />
                 </SideBarProvider>

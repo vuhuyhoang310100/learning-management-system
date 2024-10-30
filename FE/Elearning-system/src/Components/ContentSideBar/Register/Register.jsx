@@ -21,11 +21,15 @@ function Register() {
 
     const formik = useFormik({
         initialValues: {
+            userName: '',
             email: '',
             password: '',
             cfpassword: ''
         },
         validationSchema: Yup.object({
+            userName: Yup.string()
+                .max(10, 'Tên không quá 10 kí tự')
+                .required('Tên là bắt buộc'),
             email: Yup.string()
                 .email('Email không hợp lệ')
                 .required('Email là bắt buộc'),
@@ -55,6 +59,12 @@ function Register() {
                 </p>
             </div>
             <form onSubmit={formik.handleSubmit}>
+                <InputCommon
+                    id='userName'
+                    label='Tên của bạn?'
+                    type='text'
+                    formik={formik}
+                />
                 <InputCommon
                     id='email'
                     label='Email'
