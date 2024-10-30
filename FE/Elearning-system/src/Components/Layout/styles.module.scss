@@ -1,0 +1,10 @@
+@import '@styles/variable.module.scss';
+
+.wrapper {
+    margin-top: $header-height;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
