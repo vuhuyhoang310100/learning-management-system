@@ -1,0 +1,6 @@
+body {
+    input[type='password']::-ms-reveal,
+    input[type='password']::-webkit-textfield-decoration-container {
+        display: none;
+    }
+}

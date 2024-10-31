@@ -1,0 +1,34 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 6px 16px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
+.avatarCl {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info {
+    flex: 1;
+    margin-left: 12px;
+}
+
+.titleName {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.userName {
+    font-size: 16px;
+    line-height: 25px;
+    color: rgba(22, 24, 35, 0.5);
+}

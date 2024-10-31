@@ -1,22 +1,16 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 // https://vitejs.dev/config/
-export default defineConfig(
-    {
-        plugins: [react()]
-    },
-    {
-        compilerOptions: {
-            baseUrl: './',
-            paths: {
-                '@components/*': ['src/Components/*'],
-                '@admin/*': ['src/Components/Admin/*'],
-                '@client/*': ['src/Components/Client/*'],
-                '@assets/*': ['src/assets/*'],
-                '@styles/*': ['src/assets/styles/*']
-            }
-        },
-        include: ['src/**/*']
+export default defineConfig({
+    plugins: [react()],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'src'),
+            '@components': path.resolve(__dirname, 'src/Components'),
+            '@assets': path.resolve(__dirname, 'src/assets'),
+            '@styles': path.resolve(__dirname, 'src/assets/styles')
+        }
     }
-);
+});
