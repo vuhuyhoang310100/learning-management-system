@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { ToastContext } from '@/Context/ToastProvider';
 import { useContext } from 'react';
 import Button from '@components/Button/Button';
+import { register } from '@/apis/authService';
 
 function Register() {
     const {
@@ -41,8 +42,15 @@ function Register() {
                 'Hai mật khẩu của bạn không khớp'
             )
         }),
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             console.log(values);
+            const {
+                userName: name,
+                email,
+                password,
+                cfpassword: password_confirmation
+            } = values;
+            await register({ name, email, password, password_confirmation });
         }
     });
     // console.log(formik.errors);
@@ -85,7 +93,7 @@ function Register() {
                 />
                 <Button
                     type='submit'
-                    onClick={() => toast.success('Đăng ký thành công')}
+                    // onClick={() => toast.success('Đăng ký thành công')}
                     primary
                     long
                     className={submitBtn}

@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { useContext } from 'react';
 import { ToastContext } from '@/Context/ToastProvider';
 import Button from '@components/Button/Button';
+import { signIn } from '@/apis/authService';
 
 function Login() {
     const {
@@ -32,8 +33,10 @@ function Login() {
                 .min(6, 'Mật khẩu ít nhất 6 kí tự')
                 .required('Mật khẩu là bắt buộc')
         }),
-        onSubmit: (values) => {
-            console.log(values);
+        onSubmit: async (values) => {
+            const { email, password } = values;
+            await signIn({ email, password });
+            // console.log(values);
         }
     });
     // console.log(formik.errors);
@@ -65,7 +68,7 @@ function Login() {
                 {/* <Button text>Quên mật khẩu?</Button> */}
                 <Button
                     type='submit'
-                    onClick={() => toast.success('Đăng nhập thành công')}
+                    // onClick={() => toast.success('Đăng nhập thành công')}
                     primary
                     long
                     className={submitBtn}

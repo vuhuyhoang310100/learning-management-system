@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 
 function BlankPage() {
     const { wrapper, boxImg, title } = styles;
+
     return (
         <div className={wrapper}>
             <div className={boxImg}>
