@@ -43,14 +43,19 @@ function Register() {
             )
         }),
         onSubmit: async (values) => {
-            console.log(values);
+            // console.log(values);
             const {
                 userName: name,
                 email,
                 password,
                 cfpassword: password_confirmation
             } = values;
-            await register({ name, email, password, password_confirmation });
+            await register({ name, email, password, password_confirmation })
+                .then((res) => {
+                    toast.success('Đăng ký thành công!');
+                    formik.resetForm();
+                })
+                .catch(toast.error('Đăng ký thất bại!'));
         }
     });
     // console.log(formik.errors);

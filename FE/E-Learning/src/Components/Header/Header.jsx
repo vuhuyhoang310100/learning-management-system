@@ -3,13 +3,14 @@ import styles from './styles.module.scss';
 import { useContext } from 'react';
 import { SideBarContext } from '@/Context/SideBarProvider';
 import Button from '@components/Button/Button';
-import CenterLayout from '@components/Layout/Layout';
 import Search from '@components/Search/Search';
+import { StoreContext } from '@/Context/storeProvider';
 
 function Header() {
     const { container, headerLogo, boxButton, searchBox } = styles;
     const { setIsOpen, setType } = useContext(SideBarContext);
-
+    const { userId, handleLogOut } = useContext(StoreContext);
+    // console.log(userId);
     const handleOpenSideBar = (type) => {
         setIsOpen(true);
         setType(type);
@@ -24,12 +25,30 @@ function Header() {
                 <Search />
             </div>
             <div className={boxButton}>
-                <Button outline onClick={() => handleOpenSideBar('signin')}>
-                    Đăng nhập
-                </Button>
-                <Button primary onClick={() => handleOpenSideBar('signup')}>
-                    Đăng ký
-                </Button>
+                {!userId && (
+                    <>
+                        <Button
+                            outline
+                            onClick={() => handleOpenSideBar('signin')}
+                        >
+                            Đăng nhập
+                        </Button>
+                        <Button
+                            primary
+                            onClick={() => handleOpenSideBar('signup')}
+                        >
+                            Đăng ký
+                        </Button>
+                    </>
+                )}
+                {userId && (
+                    <>
+                        <div>Hello: {userId}</div>
+                        <Button primary onClick={handleLogOut}>
+                            Đăng xuất
+                        </Button>
+                    </>
+                )}
             </div>
         </div>
     );

@@ -7,6 +7,9 @@ import { useContext } from 'react';
 import { ToastContext } from '@/Context/ToastProvider';
 import Button from '@components/Button/Button';
 import { signIn } from '@/apis/authService';
+import Cookies from 'js-cookie';
+import { SideBarContext } from '@/Context/SideBarProvider';
+import { StoreContext } from '@/Context/storeProvider';
 
 function Login() {
     const {
@@ -19,6 +22,8 @@ function Login() {
         submitBtn
     } = styles;
     const { toast } = useContext(ToastContext);
+    const { setIsOpen } = useContext(SideBarContext);
+    const { setUserId } = useContext(StoreContext);
 
     const formik = useFormik({
         initialValues: {
@@ -35,8 +40,22 @@ function Login() {
         }),
         onSubmit: async (values) => {
             const { email, password } = values;
-            await signIn({ email, password });
             // console.log(values);
+            await signIn({ email, password })
+                .then((res) => {
+                    // console.log(res);
+                    const { token } = res.data.data;
+                    const { id } = res.data.data.user;
+                    setUserId(id);
+                    Cookies.set('token', token);
+                    Cookies.set('userId', id);
+                    formik.resetForm();
+                    toast.success('Đăng nhập thành công');
+                    setIsOpen(false);
+                })
+                .catch((err) => {
+                    toast.error('Đăng nhập thất bại');
+                });
         }
     });
     // console.log(formik.errors);
