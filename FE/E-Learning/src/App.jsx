@@ -8,6 +8,7 @@ import Footer from '@components/Footer/Footer';
 import Content from '@components/Content/Content';
 import BlankPage from '@components/BlankPage/BlankPage';
 import { StoreProvider } from '@/Context/storeProvider';
+import ItemsLayout from '@components/Layout/ItemsLayout/ItemsLayout';
 
 function App() {
     return (
@@ -20,7 +21,7 @@ function App() {
                         <BodyLayout>
                             <NavBar />
                             <Content>
-                                <BlankPage />
+                                <ItemsLayout />
                             </Content>
                         </BodyLayout>
                         <Footer />

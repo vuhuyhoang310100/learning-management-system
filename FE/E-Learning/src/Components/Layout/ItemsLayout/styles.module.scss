@@ -1,0 +1,32 @@
+.wrapper {
+    padding: 0 44px 72px;
+}
+
+.wrapper-content {
+    padding: 0 77px 0 10px;
+}
+
+.wrapper-colom {
+    margin-top: 50px;
+}
+
+.title {
+    h2 {
+        margin: 16px auto 28px 0;
+        color: #242424;
+        font-size: 25px;
+        font-weight: 900;
+    }
+}
+
+.body {
+    min-height: 200px;
+    padding-bottom: 0;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
