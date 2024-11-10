@@ -1,34 +1,45 @@
-import Header from '@components/Header/Header';
 import { SideBarProvider } from '@/Context/SideBarProvider';
-import SideBar from '@components/SideBar/SideBar';
 import { ToastProvider } from '@/Context/ToastProvider';
-import BodyLayout from '@components/Layout/Layout';
-import NavBar from '@components/NavBar/NavBar';
-import Footer from '@components/Footer/Footer';
-import Content from '@components/Content/Content';
-import BlankPage from '@components/BlankPage/BlankPage';
 import { StoreProvider } from '@/Context/storeProvider';
-import ItemsLayout from '@components/Layout/ItemsLayout/ItemsLayout';
+import { publicRoutes } from '@/router';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeLayout from '@/Layout/HomeLayout';
+import { Fragment } from 'react';
 
 function App() {
     return (
-        <>
+        <Router>
             <StoreProvider>
                 <ToastProvider>
                     <SideBarProvider>
-                        <Header />
-                        <SideBar />
-                        <BodyLayout>
-                            <NavBar />
-                            <Content>
-                                <ItemsLayout />
-                            </Content>
-                        </BodyLayout>
-                        <Footer />
+                        <Routes>
+                            {publicRoutes.map((route, index) => {
+                                const Page = route.component;
+
+                                let Layout = HomeLayout;
+
+                                if (route.layout) {
+                                    Layout = route.layout;
+                                } else if (route.layout === null) {
+                                    Layout = Fragment;
+                                }
+                                return (
+                                    <Route
+                                        key={index}
+                                        path={route.path}
+                                        element={
+                                            <Layout>
+                                                <Page />
+                                            </Layout>
+                                        }
+                                    />
+                                );
+                            })}
+                        </Routes>
                     </SideBarProvider>
                 </ToastProvider>
             </StoreProvider>
-        </>
+        </Router>
     );
 }
 
