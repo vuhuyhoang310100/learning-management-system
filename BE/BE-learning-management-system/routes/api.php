@@ -50,7 +50,7 @@ Route::prefix('teacher')->middleware('auth:sactum')->name('teacher.')->group(fun
 
 //protected Route
 Route::group(['middleware' => ['auth.user']], function(){
-    Route::get('/user/profile', [UserController::class, 'profile']);
+    // Route::get('/user/profile', [UserController::class, 'profile']);
     Route::post('/logout',[AuthController::class,'logout'])->name('auth-logout');
 });
 Route::prefix('admin')->group(function() {
