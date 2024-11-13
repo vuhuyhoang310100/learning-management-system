@@ -6,7 +6,7 @@ import { RiUserFill } from 'react-icons/ri';
 import { SiCoursera } from 'react-icons/si';
 import { MdPlayLesson } from 'react-icons/md';
 import { dataMenu } from '@/Admin/Components/SideBar/constant';
-import SideBarItem from '@/Admin/Components/SideBar/SideBarItem';
+import SideBarItem from '@/Admin/Components/SideBarItem/SideBarItem';
 
 function SideBar() {
     const cx = classNames.bind(styles);
