@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->string('image_path')->nullable();
+            $table->text('image_path')->nullable();
             $table->foreignId('teacher_id')->nullable()->constrained('users')->nullOnDelete();
             $table->uuid('parent_id')->nullable();
             $table->foreign('parent_id')->references('id')->on('courses')->nullOnDelete();
