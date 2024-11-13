@@ -54,9 +54,18 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     // Route::get('/user/profile', [UserController::class, 'profile']);
     Route::post('/logout',[AuthController::class,'logout'])->name('auth-logout');
 });
+
 Route::prefix('admin')->group(function() {
     Route::middleware(['admin.auth'])->group(function () {
         Route::get('/get-profile', [AdminController::class, 'profile'])->name('admin-profile');
         Route::post('/logout', [AuthController::class, 'logout'])->name('auth-logout');
     });
 });
+
+Route::get('/404', function () {
+    return response()->json([
+        'code' => 404,
+        'message' => 'PAGE_NOT_FOUND',
+        'data' => null
+    ], 404);
+})->name('404');

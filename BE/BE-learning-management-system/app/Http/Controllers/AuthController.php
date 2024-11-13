@@ -20,17 +20,19 @@ class AuthController extends Controller
         $request->validated($request->all());
 
         if (!Auth::attempt($request->only('email', 'password'))) {
-            return $this->error('', 'Invalid credentials', 401);
+            return $this->error('INVALID_CREDENTIALS', null, 401);
         }
         $user = Auth::user();
         $token = $user->createToken('API TOKEN of ' . $user->name)->plainTextToken;
-        
-        return $this->success([
-            'user' => $user,
-            'message' => 'Login successful',
-            'token' => $token,
-            'token_type' => 'Bearer'
-        ]);
+
+        return $this->success(
+            'LOGIN_SUCCESS',
+            [
+                'user' => $user,
+                'token' => $token,
+                'token_type' => 'Bearer',
+            ],
+        );
     }
 
     public function register(StoreUserRequest $request)
@@ -42,10 +44,13 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
         return $this->success(
+            'REGISTER_SUCCESS',
             [
                 'user' => $user,
-                'token' => $user->createToken('API TOKEN of ' . $user->name)->plainTextToken
-            ]
+                'token' => $user->createToken('API TOKEN of '. $user->name)->plainTextToken,
+                'token_type' => 'Bearer'
+            ],
+            200
         );
     }
     public function logout()
@@ -54,8 +59,28 @@ class AuthController extends Controller
         \Log::info($user->currentAccessToken());
         $user->currentAccessToken()->delete();
 
-        return $this->success([
-            'message' => 'Logged out successfully',
-        ]);
+        return $this->success(
+            'LOGOUT_SUCCESS',
+            null,
+            200
+        );
+    }
+
+    public function error($message, $data = null, $status = 400)
+    {
+        return response()->json([
+            'code' => $status,
+            'message' => $message,
+            'data' => $data,
+        ], $status);
+    }
+
+    public function success($message = null, $data = null, $status = 200)
+    {
+        return response()->json([
+            'code' => $status,
+            'message' => $message ?? 'Request was successful.',
+            'data' => $data,
+        ], $status);
     }
 }
