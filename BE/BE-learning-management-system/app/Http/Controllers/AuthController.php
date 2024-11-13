@@ -18,12 +18,12 @@ class AuthController extends Controller
     public function login(LoginUserRequest $request)
 {
     $request->validated($request->all());
+    $user = \App\Models\User::where('email', $request->email)->first();
 
-    if (!Auth::attempt($request->only('email', 'password'))) {
+    if (!$user || !Hash::check($request->password, $user->password)) {
         return $this->error('', 'Invalid credentials', 401);
     }
-        $user = Auth::user();
-        $token = $user->createToken('API TOKEN of ' . $user->name)->plainTextToken;
+    $token = $user->createToken('API TOKEN of ' . $user->name)->plainTextToken;
 
         return $this->success([
             'user' => $user,
@@ -31,7 +31,6 @@ class AuthController extends Controller
             'token' => $token,
             'token_type' => 'Bearer'
         ]);
-
 }
 
     public function register(StoreUserRequest $request)
@@ -44,7 +43,7 @@ class AuthController extends Controller
         ]);
         return $this->success(
             ['user'=>$user,
-            'token'=>$user->createToken('API TOKEN of '.$user->name)->plainTextToken
+                    'token'=>$user->createToken('API TOKEN of '.$user->name)->plainTextToken
             ]
         );
     }
