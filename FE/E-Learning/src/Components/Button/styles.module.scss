@@ -1,0 +1,62 @@
+@import '@styles/variable.module.scss';
+@import '@styles/mixin.module.scss';
+
+.wrapper {
+    min-width: 100px;
+    height: 40px;
+    padding: 10px 16px;
+    line-height: 18px;
+    border-radius: 17px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: transparent;
+    border: 1px solid $border_gray;
+    cursor: pointer;
+    user-select: none;
+
+    &.disable {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+}
+
+//Button type
+.primary {
+    color: $black_color;
+    background-color: $primary_color;
+    border: none;
+
+    &:hover {
+        background-color: $primary_hover_color;
+    }
+}
+
+.outline {
+    color: $black_color;
+    background-color: $white_color;
+
+    &:hover {
+        background-color: $transparent_hover_color;
+    }
+}
+
+.text {
+    min-width: 0px;
+    height: 0px;
+    padding: 0px;
+    color: $black_color;
+    border: none;
+}
+//Button size
+.circuler {
+    width: 55px;
+    height: 55px;
+    border-radius: 999px;
+}
+
+.long {
+    @include flex_box_custom(center, center, 0px);
+
+    min-width: 300px;
+    padding: 20px;
+}
