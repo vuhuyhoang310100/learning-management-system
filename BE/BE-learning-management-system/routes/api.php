@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use Illuminate\Http\Request;
@@ -16,27 +17,45 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 
 //Public Route
+// Route::middleware('admin.auth')->group(function () {
+//     Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+//     // Các route khác của admin
+// });
+
 Route::prefix('auth')->group(function () {
-    Route::post('/login', [AuthController::class, 'login'])->name('auth-login');
-    Route::post('/register', [AuthController::class, 'register'])->name('auth-register');
+    Route::prefix('user')->group(function () {
+        Route::post('/login', [AuthController::class, 'login'])->name('auth-user-login');
+        Route::post('/register', [AuthController::class, 'register'])->name('auth-user-register');
+    });
+
+    Route::prefix('admin')->group(function () {
+        Route::post('/login', [AdminController::class, 'login'])->name('auth-admin-login');
+
+        // Route::post('/register', [AuthController::class, 'registerAdmin'])->name('auth-admin-register');
+    });
 });
 
-//protected Route
-Route::group(['middleware' => ['auth.user']], function(){
-    Route::post('/logout',[AuthController::class,'logout'])->name('auth-logout');
-});
-
-//Admin routes
+//Teacher routes
 Route::prefix('teacher')->middleware('auth:sactum')->name('teacher.')->group(function () {
     Route::prefix('courses')->name('course.')->group(function (){
         Route::post('/post-create', [CourseController::class, 'postCreate'])->name('post-create');
         Route::post('/post-update', [CourseController::class, 'postUpdate'])->name('post-update');
         Route::get('/list', [CourseController::class, 'list'])->name('list');
         Route::get('/detail/{course}', [CourseController::class, 'detail'])->name('detail');
+    });
+});
+
+//protected Route
+Route::group(['middleware' => ['auth.user']], function(){
+    Route::get('/user/profile', [UserController::class, 'profile']);
+    Route::post('/logout',[AuthController::class,'logout'])->name('auth-logout');
+});
+Route::prefix('admin')->group(function() {
+    Route::middleware(['admin.auth'])->group(function () {
+        Route::get('/get-profile', [AdminController::class, 'profile'])->name('admin-profile');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('auth-logout');
     });
 });
