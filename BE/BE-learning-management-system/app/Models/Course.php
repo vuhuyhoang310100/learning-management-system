@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Traits\Encryptable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
-    use HasFactory, Encryptable;
+    use HasFactory, Encryptable, SoftDeletes;
 
     public $incrementing = false; 
     protected $keyType = 'string';

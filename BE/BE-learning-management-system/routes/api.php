@@ -38,13 +38,14 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-//Teacher routes
-Route::prefix('teacher')->middleware('auth:sactum')->name('teacher.')->group(function () {
-    Route::prefix('courses')->name('course.')->group(function (){
+//Teacher routes, sau rồi sẽ update middleware teacher sau
+Route::prefix('teacher')->name('teacher-')->group(function () {
+    Route::prefix('courses')->name('course-')->group(function (){
         Route::post('/post-create', [CourseController::class, 'postCreate'])->name('post-create');
-        Route::post('/post-update', [CourseController::class, 'postUpdate'])->name('post-update');
+        Route::post('/post-update/{course}', [CourseController::class, 'postUpdate'])->name('post-update');
         Route::get('/list', [CourseController::class, 'list'])->name('list');
         Route::get('/detail/{course}', [CourseController::class, 'detail'])->name('detail');
+        Route::post('/delete/{course}', [CourseController::class,'delete'])->name('delete');
     });
 });
 

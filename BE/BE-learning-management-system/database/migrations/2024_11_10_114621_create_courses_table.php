@@ -20,6 +20,7 @@ return new class extends Migration
             $table->uuid('parent_id')->nullable();
             $table->foreign('parent_id')->references('id')->on('courses')->nullOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
