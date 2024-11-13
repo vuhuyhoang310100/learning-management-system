@@ -5,6 +5,7 @@ import { publicRoutes } from '@/router';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomeLayout from '@/Layout/HomeLayout';
 import { Fragment } from 'react';
+import './App.css';
 
 function App() {
     return (
