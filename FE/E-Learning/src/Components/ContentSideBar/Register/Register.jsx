@@ -55,7 +55,7 @@ function Register() {
                     toast.success('Đăng ký thành công!');
                     formik.resetForm();
                 })
-                .catch(toast.error('Đăng ký thất bại!'));
+                .catch((err) => toast.error('Đăng ký thất bại!'));
         }
     });
     // console.log(formik.errors);

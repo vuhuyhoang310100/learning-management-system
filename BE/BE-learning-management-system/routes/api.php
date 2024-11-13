@@ -50,7 +50,7 @@ Route::prefix('teacher')->name('teacher-')->group(function () {
 });
 
 //protected Route
-Route::group(['middleware' => ['auth.user']], function(){
+Route::group(['middleware' => ['auth:sanctum']], function(){
     // Route::get('/user/profile', [UserController::class, 'profile']);
     Route::post('/logout',[AuthController::class,'logout'])->name('auth-logout');
 });

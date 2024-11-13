@@ -2,11 +2,11 @@ import axiosClient from './axiosClient';
 
 const register = async (body) => {
     // console.log(body);
-    return await axiosClient.post('auth/register', body);
+    return await axiosClient.post('auth/user/register', body);
 };
 
 const signIn = async (body) => {
-    return await axiosClient.post('auth/login', body);
+    return await axiosClient.post('auth/user/login', body);
 };
 
 // const getInfo = async (userId) => {
