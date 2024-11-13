@@ -1,6 +1,6 @@
-import styles from './styles.module.scss';
+import styles from './../SideBar/styles.module.scss';
 import classNames from 'classnames/bind';
-import SubSideBar from '@/Admin/Components/SideBar/SubSideBar';
+import SubSideBar from '@/Admin/Components/SubSideBar/SubSideBar';
 import { useEffect, useRef, useState } from 'react';
 function SideBarItem({ items, depthLevel }) {
     const cx = classNames.bind(styles);

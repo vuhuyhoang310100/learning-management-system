@@ -11,7 +11,7 @@ const publicRoutes = [
     { path: '/blank', component: BlankPage },
     { path: '/item', component: ItemsLayout, layout: SecondLayout },
     { path: '/staff', component: LoginAdmin, layout: null },
-    { path: '/home', component: SideBar, layout: null }
+    { path: '/home', component: Header, layout: null }
 ];
 
 const privateRoutes = [];

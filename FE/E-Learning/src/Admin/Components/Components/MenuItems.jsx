@@ -20,19 +20,8 @@ function MenuItems({ items, depthLevel }) {
             document.removeEventListener('touchstart', handler);
         };
     }, [dropdown]);
-    const onMouseEnter = () => {
-        setDropdown(true);
-    };
-    const onMouseLeave = () => {
-        setDropdown(false);
-    };
     return (
-        <li
-            className='menu-items'
-            ref={ref}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-        >
+        <li className='menu-items' ref={ref}>
             {items.submenu ? (
                 <>
                     {' '}
